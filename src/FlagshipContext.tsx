@@ -43,6 +43,11 @@ export interface FsStatus {
    */
   isVisitorDefined?: boolean;
   /**
+   * String. The current visitor id according to flagship. Useful for synchronising the visitor id with external systems,
+   * if visitor id assignment was performed by flagship without any prior calls by the user to Flagship.newVisitor()
+   */
+  visitorId?: string;
+  /**
    * String or null. The last update date occurred on the flagship visitor instance.
    */
   lastRefresh?: string;
@@ -196,6 +201,7 @@ export const FlagshipProvider: React.FC<FlagshipProviderProps> = ({
       isSdkReady: param.isSdkReady,
       isLoading: param.isLoading,
       isVisitorDefined: !!param.fsVisitor,
+      visitorId: param.fsVisitor.visitorId,
       lastRefresh: new Date().toISOString()
     }
 
